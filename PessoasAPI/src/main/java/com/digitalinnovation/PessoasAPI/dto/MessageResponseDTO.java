@@ -1,4 +1,4 @@
-package com.digitalinnovation.PessoasAPI.controller;
+package com.digitalinnovation.PessoasAPI.dto;
 
 
 import lombok.Builder;
