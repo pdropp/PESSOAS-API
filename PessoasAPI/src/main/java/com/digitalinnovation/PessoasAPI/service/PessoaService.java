@@ -5,6 +5,8 @@ import com.digitalinnovation.PessoasAPI.dto.request.PessoaDTO;
 import com.digitalinnovation.PessoasAPI.entity.Pessoa;
 import com.digitalinnovation.PessoasAPI.mapper.PessoaMapper;
 import com.digitalinnovation.PessoasAPI.repository.repositorioPessoa;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +18,9 @@ public class PessoaService {
     private final PessoaMapper pessoaMapper = PessoaMapper.INSTANCE;
 
     @Autowired
-    public PessoaService(repositorioPessoa repositorioPessoa) {
+    public  PessoaService(repositorioPessoa repositorioPessoa) {
         this.repositorioPessoa = repositorioPessoa;
     }
-
 
     public MessageResponseDTO createPessoa(PessoaDTO pessoaDTO) {
         Pessoa pessoaSeraSalva = pessoaMapper.toModel(pessoaDTO);

@@ -14,7 +14,7 @@ public interface PessoaMapper {
     PessoaMapper INSTANCE = Mappers.getMapper(PessoaMapper.class);
 
 
-    @Mapping(target = "dateBirth", source = "dateBirth", dateFormat = "dd-MM-yyyy")
+   // @Mapping(target = "dateBirth", source = "dateBirth", dateFormat = "dd-MM-yyyy")
     Pessoa toModel(PessoaDTO pessoaDTO);
 
     PessoaDTO toDTO(Pessoa pessoa);
