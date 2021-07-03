@@ -30,7 +30,7 @@ public class Pessoa {
     @Column(nullable = false, unique = true) //Só vai poder cadastrar dados na tablea pessoa com CPF únicos
     private String cpf;
 
-    private LocalDate dataNascimento;
+    private LocalDate birthDate;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE}) //Relacionamento entre pessoas e telefone
     private List<Telefone> telefones;

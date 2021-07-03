@@ -2,28 +2,29 @@ package com.digitalinnovation.PessoasAPI.controller;
 
 
 import com.digitalinnovation.PessoasAPI.dto.MessageResponseDTO;
-import com.digitalinnovation.PessoasAPI.entity.Pessoa;
-import com.digitalinnovation.PessoasAPI.repository.repositorioPessoa;
-import com.digitalinnovation.PessoasAPI.service.pessoaService;
+import com.digitalinnovation.PessoasAPI.dto.request.PessoaDTO;
+import com.digitalinnovation.PessoasAPI.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/pessoas")
-public class controllerPessoas {
+public class ControllerPessoas {
 
-    private pessoaService pessoaService;
+    private PessoaService pessoaService;
 
     @Autowired
-    public controllerPessoas (pessoaService pessoaService) {
+    public ControllerPessoas (PessoaService pessoaService) {
         this.pessoaService = pessoaService;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDTO createPessoa(@RequestBody  Pessoa pessoa){
-        return pessoaService.createPessoa(pessoa);
+    public MessageResponseDTO createPessoa(@RequestBody @Valid PessoaDTO pessoaDTO){
+        return pessoaService.createPessoa(pessoaDTO);
     }
 
 }
