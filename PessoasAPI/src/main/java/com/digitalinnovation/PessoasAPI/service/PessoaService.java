@@ -10,6 +10,9 @@ import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PessoaService {
 
@@ -30,5 +33,12 @@ public class PessoaService {
                 .builder()
                 .message("Pessoa criada com id " + salvoPessoa.getId())
                 .build();
+    }
+
+    public List<PessoaDTO> listAll(){
+        List<Pessoa> todasPessoas = repositorioPessoa.findAll();
+        return todasPessoas.stream()
+                .map(pessoaMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }

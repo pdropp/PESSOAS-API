@@ -35,6 +35,6 @@ public class PessoaDTO {
     @NotEmpty
     private List<PhoneDTO> telefones;
 
-    private String birthDate;
+    private String dataNascimento;
 
 }
