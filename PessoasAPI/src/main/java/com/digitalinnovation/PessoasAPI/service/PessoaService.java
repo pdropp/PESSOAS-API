@@ -27,15 +27,16 @@ public class PessoaService {
         this.repositorioPessoa = repositorioPessoa;
     }
 
+    //METODO POST --------------
+
     public MessageResponseDTO createPessoa(PessoaDTO pessoaDTO) {
         Pessoa pessoaSeraSalva = pessoaMapper.toModel(pessoaDTO);
 
         Pessoa salvoPessoa = repositorioPessoa.save(pessoaSeraSalva);
-        return MessageResponseDTO
-                .builder()
-                .message("Pessoa criada com id " + salvoPessoa.getId())
-                .build();
+        return criarMessageResponse(salvoPessoa.getId(), "Pessoa criada com id ");
     }
+
+    //METODO GET --------------
 
     public List<PessoaDTO> listAll(){
         List<Pessoa> todasPessoas = repositorioPessoa.findAll();
@@ -54,18 +55,42 @@ public class PessoaService {
         if(pessoaOpcinal.isEmpty()){
             throw new pessoaNaoExiste(id);
         }*/
+
         Pessoa pessoa = verificarExistencia(id);
 
         return pessoaMapper.toDTO(pessoa);
     }
 
+
+    //DELETE --------------
     public void delete(Long id) throws pessoaNaoExiste {
         verificarExistencia(id);
         repositorioPessoa.deleteById(id);
     }
 
+
+    //PUT --------------
+    public MessageResponseDTO atualizarId(Long id, PessoaDTO pessoaDTO) throws pessoaNaoExiste {
+        verificarExistencia(id);
+
+        Pessoa atualizarPessoa = pessoaMapper.toModel(pessoaDTO);
+
+        Pessoa salvoPessoa = repositorioPessoa.save(atualizarPessoa);
+        return criarMessageResponse(salvoPessoa.getId(), "Id atualizado com sucesso ");
+    }
+
+
+    private MessageResponseDTO criarMessageResponse(Long id, String mensagem) {
+        return MessageResponseDTO
+                .builder()
+                .message(mensagem + id)
+                .build();
+    }
+
+    //VERIFICAR SE O ID ESTÁ NO BD
     private Pessoa verificarExistencia(Long id) throws pessoaNaoExiste {
         return repositorioPessoa.findById(id)
                 .orElseThrow(() -> new pessoaNaoExiste(id));
     }
+
 }

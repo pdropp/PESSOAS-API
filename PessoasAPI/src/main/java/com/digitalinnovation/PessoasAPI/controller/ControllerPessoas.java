@@ -5,6 +5,7 @@ import com.digitalinnovation.PessoasAPI.dto.MessageResponseDTO;
 import com.digitalinnovation.PessoasAPI.dto.request.PessoaDTO;
 import com.digitalinnovation.PessoasAPI.service.PessoaService;
 import com.digitalinnovation.PessoasAPI.service.execption.pessoaNaoExiste;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -44,5 +45,10 @@ public class ControllerPessoas {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) throws pessoaNaoExiste {
         pessoaService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody @Valid PessoaDTO pessoaDTO) throws pessoaNaoExiste{
+        return pessoaService.atualizarId(id, pessoaDTO);
     }
 }
