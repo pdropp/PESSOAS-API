@@ -39,4 +39,10 @@ public class ControllerPessoas {
     public PessoaDTO findById(@PathVariable Long id) throws pessoaNaoExiste {
         return pessoaService.findById(id);
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(Long id) throws pessoaNaoExiste {
+        pessoaService.delete(id);
+    }
 }
