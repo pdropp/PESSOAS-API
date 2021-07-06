@@ -45,11 +45,15 @@ public class PessoaService {
     }
 
     public PessoaDTO findById(Long id) throws pessoaNaoExiste {
-        Optional<Pessoa> pessoaOpcinal = repositorioPessoa.findById(id);
+        //Melhor forma de fazer a consulta
+       Pessoa pessoa =  repositorioPessoa.findById(id)
+                .orElseThrow(() -> new pessoaNaoExiste(id));
+
+       //Segunda forma
+       /*  Optional<Pessoa> pessoaOpcinal = repositorioPessoa.findById(id);
         if(pessoaOpcinal.isEmpty()){
             throw new pessoaNaoExiste(id);
-        }
-
-        return pessoaMapper.toDTO(pessoaOpcinal.get());
+        }*/
+        return pessoaMapper.toDTO(pessoa);
     }
 }
