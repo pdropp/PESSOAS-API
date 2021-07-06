@@ -25,7 +25,6 @@ public class PessoaService {
     private final PessoaMapper pessoaMapper = PessoaMapper.INSTANCE;
 
     //METODO POST --------------
-
     public MessageResponseDTO createPessoa(PessoaDTO pessoaDTO) {
         Pessoa pessoaSeraSalva = pessoaMapper.toModel(pessoaDTO);
 
@@ -34,7 +33,6 @@ public class PessoaService {
     }
 
     //METODO GET --------------
-
     public List<PessoaDTO> listAll(){
         List<Pessoa> todasPessoas = repositorioPessoa.findAll();
         return todasPessoas.stream()
