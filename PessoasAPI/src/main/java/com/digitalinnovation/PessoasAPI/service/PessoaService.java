@@ -76,7 +76,7 @@ public class PessoaService {
         Pessoa atualizarPessoa = pessoaMapper.toModel(pessoaDTO);
 
         Pessoa salvoPessoa = repositorioPessoa.save(atualizarPessoa);
-        return criarMessageResponse(salvoPessoa.getId(), "Id atualizado com sucesso ");
+        return criarMessageResponse(salvoPessoa.getId(), "Cliente atualizado com sucesso ");
     }
 
     private MessageResponseDTO criarMessageResponse(Long id, String mensagem) {
