@@ -5,6 +5,7 @@ import com.digitalinnovation.PessoasAPI.dto.MessageResponseDTO;
 import com.digitalinnovation.PessoasAPI.dto.request.PessoaDTO;
 import com.digitalinnovation.PessoasAPI.service.PessoaService;
 import com.digitalinnovation.PessoasAPI.service.execption.pessoaNaoExiste;
+import lombok.AllArgsConstructor;
 import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,14 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pessoas")
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ControllerPessoas {
 
     private PessoaService pessoaService;
-
-    @Autowired
-    public ControllerPessoas (PessoaService pessoaService) {
-        this.pessoaService = pessoaService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

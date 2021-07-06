@@ -6,6 +6,7 @@ import com.digitalinnovation.PessoasAPI.entity.Pessoa;
 import com.digitalinnovation.PessoasAPI.mapper.PessoaMapper;
 import com.digitalinnovation.PessoasAPI.repository.repositorioPessoa;
 import com.digitalinnovation.PessoasAPI.service.execption.pessoaNaoExiste;
+import lombok.AllArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PessoaService {
 
     private repositorioPessoa repositorioPessoa;
 
     private final PessoaMapper pessoaMapper = PessoaMapper.INSTANCE;
-
-    @Autowired
-    public  PessoaService(repositorioPessoa repositorioPessoa) {
-        this.repositorioPessoa = repositorioPessoa;
-    }
 
     //METODO POST --------------
 
