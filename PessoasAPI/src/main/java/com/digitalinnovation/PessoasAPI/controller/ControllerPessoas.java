@@ -42,7 +42,7 @@ public class ControllerPessoas {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(Long id) throws pessoaNaoExiste {
+    public void deleteById(@PathVariable Long id) throws pessoaNaoExiste {
         pessoaService.delete(id);
     }
 }
